@@ -19,13 +19,13 @@ If you want to follow along you can copy and paste this line into the terminal (
 This is our starting point:
 
 ```jsx
-import React from "react"
+import React from "react";
 
 const App = () => {
-  return <div>Learning hooks</div>
-}
+  return <div>Learning hooks</div>;
+};
 
-export default App
+export default App;
 ```
 
 ### Some gotchas
@@ -35,7 +35,7 @@ There are a couple of rules you need to follow when using hooks. I'm going to go
 Here are some of them:
 
 - Hooks can **only** be used within functions. They won't work with class components.
-- You cannot call hooks inside conditions, loops or nested functions. You **need** to have them at the top level of your React function (see below).
+- You cannot call hooks inside conditions, loops or nested functions. You **need** to have them at the top level of your functional component (see below).
 
 ```jsx
 import React from "react";
@@ -58,48 +58,48 @@ export default App;
 
 ### How to use it
 
-The first paramater in `useState` is the inital value. Just like we define initial value(s) for our state in class components.
+The first paramater in `useState` is the inital value(s). Just like we define initial value(s) for our state in class components.
 
 Below is an example where the initial value is `42`.
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const App = () => {
-  useState(42)
+  useState(42);
 
-  return <div>Learning hooks</div>
-}
+  return <div>Learning hooks</div>;
+};
 
-export default App
+export default App;
 ```
 
 We can also have a function that returns the initial value(s), which still is `42` in this case.
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const App = () => {
-  useState(() => 42)
+  useState(() => 42);
 
-  return <div>Learning hooks</div>
+  return <div>Learning hooks</div>;
 }
 
-export default App
+export default App;
 ```
 
-The reason we would use a function to return the initial value(s) is if we had an expensive computation. So if we were to have a function that has many if statements, loops, much data, etc. We could call it like this,
+The reason we would use a function to return the initial value(s) is if we had an expensive computation. Meaning we were to have a function that has many if statements, loops, much data, etc. We could call it like this,
 
 ```jsx
 import React, { useState } from "react";
 
 const heavyFunc = () => {
     ...
-    return biggestBlopEver; // 42
-}
+    return biggestBlopEver;
+};
 
 const App = () => {
-    useState(() => heavyFunc()) // 42
+    useState(() => heavyFunc());
 
     return <div>Learning hooks</div>;
 };
@@ -107,7 +107,7 @@ const App = () => {
 export default App;
 ```
 
-Why would we use a function for this you might ask. This is because it will only be called on the **first render** and not on every single re-render.
+This will only be called on the **first render** and not on every single re-render.
 
 To utilize `useState` we need to create some variables. Note that `useState` returns an array. The reason for that is so we can name our variables whatever we want. Whereas if it had been an object we couldn't.
 
@@ -116,10 +116,10 @@ See more here if you are uncertain about destructuring: https://www.vojtechruzic
 The first value is the _value_ of the state and the second value will be the _setter function_. In this example, we will be creating a simple counter.
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div>
@@ -128,31 +128,31 @@ const App = () => {
         <button onClick={() => setCount(count + 1)}>+</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
-Also worth noting is that we can pass in an _updater function_, similar to `this.setState(currState => {...})`. The _updater function_ will take a single parameter (which is the current state) and then will let us use it. Like so:
+Also worth noting is that we can pass in an _updater function_, similar to `this.setState(currState => {...})`. The _updater function_ will take a single parameter (which is the current state) and let us use it. Like this:
 
 ```jsx
-<button onClick={() => setCount(currCount => currCount + 1)}>+</button>
+<button onClick={() => setCount(currCount => currCount + 1)}>+</button>;
 ```
 
-One thing worth mentioning to save you some headaches is that `useState` **doesn't** do any merging. You might be familiar with something like this:
+To save us some headaches we need to know that `useState` **doesn't** do any _merging_. You might be familiar with something like this:
 
 ```jsx
-import React, { Component } from "react"
+import React, { Component } from "react";
 
 class App extends Component {
   state = {
     countOne: 0,
     countTwo: 42,
-  }
+  };
 
   render() {
-    const { countOne, countTwo } = this.state
+    const { countOne, countTwo } = this.state;
     return (
       <div>
         <div>Count One: {countOne}</div>
@@ -162,30 +162,30 @@ class App extends Component {
             onClick={() => {
               this.setState(currState => ({
                 countOne: currState.countOne + 1,
-              }))
+              }));
             }}
           >
             Update count one
           </button>
         </div>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
-export default App
+export default App;
 ```
 
-Here we have two properties in our state, `countOne` and `countTwo`. When we click the button our `countOne` will be incremented with one and our `countTwo` will stay the same. But in hooks, it works differently. Here's an exact copy of the code above written with hooks.
+Here we have two properties in our state, `countOne` and `countTwo`. When we click the button our `countOne` will be incremented with +1 and our `countTwo` will stay the same. But in hooks, it works differently. Here's an exact copy of the code above written with hooks.
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const App = () => {
   const [{ countOne, countTwo }, setCounts] = useState({
     countOne: 0,
     countTwo: 42,
-  })
+  });
 
   return (
     <div>
@@ -196,7 +196,7 @@ const App = () => {
           setCounts(currCounts => ({
             ...currCounts,
             countOne: currCounts.countOne + 1,
-          }))
+          }));
         }}
       >
         +
@@ -207,16 +207,16 @@ const App = () => {
           setCounts(currCounts => ({
             countTwo: currCounts.countTwo + 1,
             countOne: currCounts.countOne + 1,
-          }))
+          }));
         }}
       >
         +
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 So when we store objects in our state using `useState`, we either need to spread the state (`...`) or provide all the keys for our _updater function_. You can try to remove the line,
@@ -232,11 +232,11 @@ to see what happens when there's no merging. We will just set the values that ou
 We can have how many `useState`s as we want. Instead of storing an object that contains two counts, we could write this:
 
 ```jsx
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 const App = () => {
-  const [countOne, setCountOne] = useState(0)
-  const [countTwo, setCountTwo] = useState(42)
+  const [countOne, setCountOne] = useState(0);
+  const [countTwo, setCountTwo] = useState(42);
 
   return (
     <div>
@@ -246,13 +246,13 @@ const App = () => {
         +
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
-And when we press the button we won't touch `countTwo` and only update `countOne`.
+And when we press the button we won't mutate `countTwo` and only update `countOne`.
 
 Now you might be asking yourself when you should split your states up and when to have one larger. I don't know if there's any 100% correct answer, but I always go after this:
 
@@ -264,48 +264,48 @@ _"If the values depend on each other, meaning that you need to update them at th
 
 Since you now have some basic knowledge about hooks, especially the `useState` hook, you might be wondering why these are useful. And one big advantage is that you can write custom logic, encapsulate it at one place and use it everywhere (only in functions!!).
 
-A common we might use are forms. So we could create a custom `useForm` hook. Which could look like this:
+A common thing we use in our apps are forms. So we could create a custom `useForm` hook. Which could look like this:
 
 ```jsx
-import { useState } from "react"
+import { useState } from "react";
 
 export const useForm = (initialValues, callback) => {
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState(initialValues);
 
   const handleSubmit = event => {
     if (event) {
-      event.preventDefault()
+      event.preventDefault();
     }
-    callback()
-  }
+    callback();
+  };
 
   const handleChange = event => {
-    event.persist()
+    event.persist();
     setValues(values => ({
       ...values,
       [event.target.name]: event.target.value,
-    }))
-  }
+    }));
+  };
 
-  return [values, handleChange, handleSubmit]
-}
+  return [values, handleChange, handleSubmit];
+};
 ```
 
 And then use it our app like this:
 
 ```jsx
-import React from "react"
-import { useForm } from "./useForm"
+import React from "react";
+import { useForm } from "./useForm";
 
 const App = () => {
   const login = () => {
-    console.log("Values: ", values)
-  }
+    console.log("Values: ", values);
+  };
 
   const [values, handleChange, handleSubmit] = useForm(
     { email: "", password: "" },
     login
-  )
+  );
 
   return (
     <div>
@@ -319,13 +319,15 @@ const App = () => {
         <button>Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 Now we have encapsulated this logic within our custom `useForm` hook and we can use it everywhere within our application (only in functions!!). It as **no** UI, only our custom logic. So we don't need to use render props anymore.
+
+![Alt Text](https://media.giphy.com/media/uTuLngvL9p0Xe/giphy.gif)
 
 ### Last Remarks
 
