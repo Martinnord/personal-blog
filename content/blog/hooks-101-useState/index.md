@@ -102,7 +102,7 @@ const App = () => {
     useState(() => heavyFunc()) // 42
 
     return <div>Learning hooks</div>;
-}:
+};
 
 export default App;
 ```
