@@ -38,8 +38,8 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong>. A dude who like to code and
-              works in Stockholm.
+              Written by <strong>{author}</strong>. <br />A dude who like to
+              code and works in Stockholm. <br />
               {` `}
               <a
                 href={`https://instagram.com/${social.instagram}`}
