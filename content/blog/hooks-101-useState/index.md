@@ -34,7 +34,7 @@ There are a couple of rules you need to follow when using hooks. I'm going to go
 
 Here are some of them:
 
-- Hooks can **only** be used within functions, aka functional components. They won't work with class components.
+- Hooks can **only** be used within functions. They won't work with class components.
 - You cannot call hooks inside conditions, loops or nested functions. You **need** to have them at the top level of your React function (see below).
 
 ```jsx
@@ -54,7 +54,7 @@ export default App;
 
 ### What is useState?
 
-It lets us turn our otherwise non-stateful/functional components to one that can have it's own state.
+`useState` lets us turn our otherwise non-stateful/functional components to one that can have its own state.
 
 ### How to use it
 
