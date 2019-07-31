@@ -14,7 +14,9 @@ Starting with, `useState`.
 
 If you want to follow along you can copy and paste this line into the terminal (Assuming you have the `create-react-app` CLI installed):
 
-`create-react-app react-hooks-101-usestate && cd react-hooks-101-usestate && yarn start`
+```
+create-react-app react-hooks-101-usestate && cd react-hooks-101-usestate && yarn start
+```
 
 This is our starting point:
 
