@@ -1,9 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { SignUpForm } from "../components/SignUpForm"
 import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
@@ -11,7 +11,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-    console.log("post", post)
+
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -30,13 +30,8 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.date} • {post.fields.readingTime.text}
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+        <SignUpForm />
         <Bio />
-
         <ul
           style={{
             display: `flex`,

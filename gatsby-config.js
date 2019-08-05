@@ -28,6 +28,13 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: "gatsby-plugin-mailchimp",
+            options: {
+              endpoint:
+                "https://instagram.us18.list-manage.com/subscribe/post?u=4cdc408903b1290503b3df7a0&amp;id=a33e341911",
+            },
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
